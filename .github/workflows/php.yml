@@ -1,0 +1,35 @@
+name: DigitalB API Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  digitalb:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 7.4
+        tools: composer:v2
+
+    - name: Install Composer dependencies
+      run: composer install
+
+    - name: Run PHP script
+      run: php https://raw.githubusercontent.com/kfskenderbeu/dga23/main/Dgalb.php
+      env:
+        DIGITALB_SESSION_ID: ${{ secrets.DIGITALB_SESSION_ID }}
+        DIGITALB_POST_DATA: ${{ secrets.DIGITALB_POST_DATA }}
+
+    - name: Use the outputs
+      run: |
+        echo "Secure Streaming Token: ${{ steps.digitalb.outputs.secure_streaming_token }}"
+        echo "Session Token: ${{ steps.digitalb.outputs.session_token }}"
+        echo "Session ID: ${{ steps.digitalb.outputs.session_id }}"
