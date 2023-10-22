@@ -1,6 +1,6 @@
 <?php
 // Marrja e session_id nga kërkesa POST e mëparshme
-$session_id = "a3897a89932b441ea2d46e3444e0a973";
+$session_id = "d901a178258b1e0c128e61860e0ebd7e74f9bc49";
 
 // URL dhe headers të dhënat për kërkesën POST
 $post_url = "https://prd-digitalb.spectar.tv/client_api.php/user/login/session_id/$session_id/language/sq/format/json";
